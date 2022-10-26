@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
+import ReactTooltip from 'react-tooltip';
 
 const Header = () => {
+
+	const {user, logOut} = useContext(AuthContext)
+
+	const handleSignOut = () =>{
+		logOut()
+		.then(()=>{
+		  console.log("logged out")
+		})
+		.catch(error => console.error(error))
+	  }
+
+
     return (
         <div>
             <header className="p-4 dark:bg-gray-800 dark:text-gray-100">
@@ -29,8 +44,39 @@ const Header = () => {
 			
 		</ul>
 		<div className="items-center flex-shrink-0 hidden lg:flex">
+
+		{
+                  user ?
+                  <>
+                  {/* <span >{user.displayName}</span> */}
+                  <button onClick={handleSignOut} variant='light'>Log out</button>
+                  </>
+                  :
+                  <>
+
 			<Link to='/login' className="self-center px-8 py-3 rounded">Login</Link>
 			<Link to='/register' className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900">Register</Link>
+			</>
+		}
+			<Link  to="/profile">
+                {user?.photoURL || user?.displayName ?
+				<>
+                <img  className='rounded-full'
+                src={user.photoURL} 
+				style ={{height: "30px"}}
+				data-tip={user?.displayName}
+				/>
+				<p data-tip=""></p>
+				</>
+				
+				
+				
+				
+                : 
+                <FaUser style={{fontSize: "30px"}}></FaUser>
+
+                }
+              </Link>
 		</div>
 		<button className="p-4 lg:hidden">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 dark:text-gray-100">
@@ -39,7 +85,11 @@ const Header = () => {
 		</button>
 	</div>
 </header>
+
+				
+				<ReactTooltip/>
         </div>
+
     );
 };
 

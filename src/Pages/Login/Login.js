@@ -1,7 +1,63 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import { GoogleAuthProvider } from "firebase/auth";
+import React, { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 
 const Login = () => {
+
+
+    const [error, setError] = useState('')
+  const { signIn, setLoading, providerLogin } = useContext(AuthContext);
+
+  const googleProvider = new GoogleAuthProvider()
+//   const navigate = useNavigate()
+//   const location = useLocation()
+
+//   const from = location.state?.from?.pathname || '/'
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    signIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset()
+        setError('')
+        // if(user.emailVerified){
+
+        //   navigate(from, {replace: true})
+        // }else{
+        //   toast.error('Your email is not verified. Please verify email...')
+        // }
+      })
+      .catch((error) => {
+        console.error(error)
+        setError(error.message)
+      })
+    //   .finally(()=>{
+    //     setLoading(false)
+    //   })
+  };
+
+
+  const handleGoogleSignIn = ()=>{
+    console.log('clicked')
+    providerLogin(googleProvider)
+    .then(result => {
+        const user = result.user
+        console.log(user)
+        // navigate(from, {replace: true})
+    })
+    .catch(error => console.error(error))
+
+}
+
+
+
   return (
     <div>
       <section className="bg-gray-50 min-h-screen flex items-center justify-center">
@@ -14,7 +70,7 @@ const Login = () => {
               If you are already a member, easily log in
             </p>
 
-            <form action="" className="flex flex-col gap-4">
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <input
                 className="p-2 mt-8 rounded-xl border"
                 type="email"
@@ -30,8 +86,11 @@ const Login = () => {
                   placeholder="Password"
                   required
                 />
+                <div>
+                    <p>{error}</p>
+                </div>
               </div>
-              <button className="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300">
+              <button type="submit" className="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300">
                 Login
               </button>
             </form>
@@ -42,7 +101,7 @@ const Login = () => {
               <hr className="border-gray-400" />
             </div>
 
-            <button className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm  hover:scale-105 duration-300 text-[#002D74]">
+            <button onClick={handleGoogleSignIn} className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm  hover:scale-105 duration-300 text-[#002D74]">
               <svg
                 className="mr-3"
                 xmlns="http://www.w3.org/2000/svg"
