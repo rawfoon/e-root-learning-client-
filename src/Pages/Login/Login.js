@@ -7,7 +7,7 @@ const Login = () => {
 
 
     const [error, setError] = useState('')
-  const { signIn, setLoading, providerLogin } = useContext(AuthContext);
+  const { signIn, setLoading,  providerLogin } = useContext(AuthContext);
 
   const googleProvider = new GoogleAuthProvider()
 //   const navigate = useNavigate()
@@ -38,9 +38,9 @@ const Login = () => {
         console.error(error)
         setError(error.message)
       })
-    //   .finally(()=>{
-    //     setLoading(false)
-    //   })
+      .finally(()=>{
+        setLoading(false)
+      })
   };
 
 

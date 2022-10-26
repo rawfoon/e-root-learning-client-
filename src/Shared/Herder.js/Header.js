@@ -7,6 +7,7 @@ import ReactTooltip from 'react-tooltip';
 const Header = () => {
 
 	const {user, logOut} = useContext(AuthContext)
+	console.log('THeuser', user)
 
 	const handleSignOut = () =>{
 		logOut()
@@ -48,7 +49,7 @@ const Header = () => {
 		{
                   user ?
                   <>
-                  {/* <span >{user.displayName}</span> */}
+                  <span >{user.displayName}</span>
                   <button onClick={handleSignOut} variant='light'>Log out</button>
                   </>
                   :
@@ -58,8 +59,9 @@ const Header = () => {
 			<Link to='/register' className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-400 dark:text-gray-900">Register</Link>
 			</>
 		}
+		
 			<Link  to="/profile">
-                {user?.photoURL || user?.displayName ?
+                {user?.photoURL  ?
 				<>
                 <img  className='rounded-full'
                 src={user.photoURL} 
@@ -73,7 +75,8 @@ const Header = () => {
 				
 				
                 : 
-                <FaUser style={{fontSize: "30px"}}></FaUser>
+                <FaUser style={{fontSize: "30px"}} 
+				data-tip={user?.displayName}></FaUser>
 
                 }
               </Link>

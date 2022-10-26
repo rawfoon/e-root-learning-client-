@@ -29,7 +29,7 @@ const Register = () => {
             const user = result.user;
             console.log(user);
             setError("");
-            // handleUpdateUserProfile(name, photoURL)
+            handleUpdateUserProfile(name)
             // handleEmailVarification()
             // toast.success('Please Verify your email')
     
@@ -43,6 +43,18 @@ const Register = () => {
 
 
         };
+
+
+        const handleUpdateUserProfile = (name)=>{
+    
+            const profile = {
+              displayName: name
+             
+            }
+            updateUserProfile(profile)
+            .then(()=>{})
+            .catch(e => console.error(e))
+          }
 
           
     const handleGoogleSignIn = ()=>{
