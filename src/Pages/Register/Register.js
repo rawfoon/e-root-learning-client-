@@ -1,11 +1,18 @@
-import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { GoogleAuthProvider } from 'firebase/auth';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import RegisterImg from '../../assets/register.png';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 
 const Register = () => {
 
-    const { createUser, updateUserProfile, verifyEmail } = useContext(AuthContext);
+    const { createUser, updateUserProfile, verifyEmail, providerLogin } = useContext(AuthContext);
+    const [error, setError] = useState("");
+
+    const googleProvider = new GoogleAuthProvider()
+    // const navigate = useNavigate()
+    // const location = useLocation()
+    // const from = location.state?.from?.pathname || '/'
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -13,7 +20,7 @@ const Register = () => {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
-        // const photoURL = form.photoURL.value;
+        
     
         console.log(name, email, password);
     
@@ -21,7 +28,7 @@ const Register = () => {
           .then((result) => {
             const user = result.user;
             console.log(user);
-            // setError("");
+            setError("");
             // handleUpdateUserProfile(name, photoURL)
             // handleEmailVarification()
             // toast.success('Please Verify your email')
@@ -31,10 +38,25 @@ const Register = () => {
           })
           .catch((error) => {
             console.error(error);
-            // setError(error.message);
+            setError(error.message);
           });
+
+
+        };
+
+          
+    const handleGoogleSignIn = ()=>{
+        console.log('clicked')
+        providerLogin(googleProvider)
+        .then(result => {
+            const user = result.user
+            console.log(user)
+            // navigate(from, {replace: true})
+        })
+        .catch(error => console.error(error))
+
+    }
     
-      };
 
 
     return (
@@ -75,6 +97,7 @@ const Register = () => {
                   required
                 />
               </div>
+              <div className=''><p>{error}</p></div>
               <button type='submit' className="bg-[#002D74] rounded-xl text-white py-2 hover:scale-105 duration-300">
                 Register
               </button>
@@ -86,7 +109,7 @@ const Register = () => {
               <hr className="border-gray-400" />
             </div>
 
-            <button className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm  hover:scale-105 duration-300 text-[#002D74]">
+            <button onClick={handleGoogleSignIn} className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm  hover:scale-105 duration-300 text-[#002D74]">
               <svg
                 className="mr-3"
                 xmlns="http://www.w3.org/2000/svg"
