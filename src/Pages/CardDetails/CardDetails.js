@@ -47,10 +47,10 @@ const CardDetails = () => {
           </div>
 
           <Link
-            to=""
+            to="/checkout"
             className="flex items-center justify-center w-full btn p-3 font-semibold tracking-wide rounded-md hover:bg-slate-800 dark:bg-violet-400 dark:text-gray-900"
           >
-            See Details
+            Get Premium Access
           </Link>
         </div>
       </div>

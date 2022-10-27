@@ -1,5 +1,6 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import RegisterImg from '../../assets/register.png';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
@@ -10,9 +11,9 @@ const Register = () => {
     const [error, setError] = useState("");
 
     const googleProvider = new GoogleAuthProvider()
-    // const navigate = useNavigate()
-    // const location = useLocation()
-    // const from = location.state?.from?.pathname || '/'
+    const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || '/'
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -20,6 +21,7 @@ const Register = () => {
         const name = form.name.value;
         const email = form.email.value;
         const password = form.password.value;
+        const photoURL = form.photoURL.value;
         
     
         console.log(name, email, password);
@@ -29,9 +31,9 @@ const Register = () => {
             const user = result.user;
             console.log(user);
             setError("");
-            handleUpdateUserProfile(name)
-            // handleEmailVarification()
-            // toast.success('Please Verify your email')
+            handleUpdateUserProfile(name , photoURL)
+            handleEmailVarification()
+            toast.success('Please Verify your email')
     
     
             form.reset();
@@ -45,10 +47,11 @@ const Register = () => {
         };
 
 
-        const handleUpdateUserProfile = (name)=>{
+        const handleUpdateUserProfile = (name, photoURL)=>{
     
             const profile = {
-              displayName: name
+              displayName: name,
+              photoURL: photoURL
              
             }
             updateUserProfile(profile)
@@ -63,12 +66,20 @@ const Register = () => {
         .then(result => {
             const user = result.user
             console.log(user)
-            // navigate(from, {replace: true})
+            navigate(from, {replace: true})
         })
         .catch(error => console.error(error))
 
     }
     
+    
+  const handleEmailVarification =()=>{
+    verifyEmail()
+    .then(()=>{})
+    .catch(e => console.error(e))
+
+     
+  }
 
 
     return (
@@ -92,6 +103,13 @@ const Register = () => {
                 name="name"
                 placeholder="Name"
                 required
+              />
+              <input
+                className="p-2  rounded-xl border"
+                type="text"
+                name="photoURL"
+                placeholder="Photo URL"
+                
               />
               <input
                 className="p-2  rounded-xl border"

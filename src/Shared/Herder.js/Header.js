@@ -7,7 +7,7 @@ import ReactTooltip from 'react-tooltip';
 const Header = () => {
 
 	const {user, logOut} = useContext(AuthContext)
-	console.log('THeuser', user)
+	// console.log('THeuser', user)
 
 	const handleSignOut = () =>{
 		logOut()

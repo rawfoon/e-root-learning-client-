@@ -10,10 +10,10 @@ const Login = () => {
   const { signIn, setLoading,  providerLogin } = useContext(AuthContext);
 
   const googleProvider = new GoogleAuthProvider()
-//   const navigate = useNavigate()
-//   const location = useLocation()
+  const navigate = useNavigate()
+  const location = useLocation()
 
-//   const from = location.state?.from?.pathname || '/'
+  const from = location.state?.from?.pathname || '/'
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -28,8 +28,9 @@ const Login = () => {
         form.reset()
         setError('')
         // if(user.emailVerified){
-
-        //   navigate(from, {replace: true})
+          
+          navigate(from, {replace: true})
+          
         // }else{
         //   toast.error('Your email is not verified. Please verify email...')
         // }
@@ -50,7 +51,7 @@ const Login = () => {
     .then(result => {
         const user = result.user
         console.log(user)
-        // navigate(from, {replace: true})
+        navigate(from, {replace: true})
     })
     .catch(error => console.error(error))
 
