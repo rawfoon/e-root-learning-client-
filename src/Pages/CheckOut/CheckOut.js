@@ -13,7 +13,7 @@ const CheckOut = () => {
 
 
   return (
-    <div style={{ maxWidth: "800px" }} className="mx-auto mt-10">
+    <div style={{ maxWidth: "800px" }} className="mx-auto mt-10 mb-[250px]">
       <div className=" rounded-md shadow-md dark:bg-gray-900 dark:text-gray-100">
         <div>
           <h1 className="text-2xl md:text-4xl font-bold text-slate-800 p-5 dark:text-white">

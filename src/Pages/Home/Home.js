@@ -10,7 +10,7 @@ const Home = () => {
 <section className="dark:bg-gray-800 dark:text-gray-100 h-[700px]" style={{ backgroundImage: `url(${background})`, backgroundRepeat: 'no-repeat',backgroundSize: 'cover', backgroundPosition: 'center',backgroundColor: "rgb" }}>
 	<div className="w-full h-full bg-[#1c152482]" >
     <div className="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl">
-		<h1 className="text-4xl font-bold leading-none sm:text-5xl">E-Root Learning
+		<h1 className="text-3xl md:text-6xl font-bold leading-none  font-bold">E-Root Learning
 			
 		</h1>
 		<p className="px-8 mt-8 mb-12 text-lg">Get the best experience from E-Root Learning. 
@@ -38,7 +38,7 @@ const Home = () => {
               />
             </div>
             <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
-              <h1 className="text-5xl font-bold leading-none sm:text-6xl">
+              <h1 className="text-3xl md:text-5xl font-bold leading-none sm:text-6xl">
                 World Class Teaching
               </h1>
               <p className="mt-6 mb-8 text-lg sm:mb-12">
