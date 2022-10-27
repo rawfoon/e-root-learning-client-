@@ -2,21 +2,24 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import {FaStar, FaPlayCircle, FaCircle} from 'react-icons/fa'
 import { Link } from "react-router-dom";
+import Pdf from "react-to-pdf";
 
 const CardDetails = () => {
   const category = useLoaderData()
 
+  const ref = React.createRef();
+
   const {name, img, rating, video_duration, shorts, overview} =category
   const overViewList = []
 
-  overview.forEach(list =>{
-    overViewList.push(<li className="flex ml-4 "><FaCircle className="mt-1  mr-2 text-[12px]"/> {list}</li>)
+  overview.forEach((list, i) =>{
+    overViewList.push(<li key={i} className="flex ml-4 "><FaCircle className="mt-1  mr-2 text-[12px]"/> {list}</li>)
   })
   
 
 
   return (
-    <div style={{maxWidth: "800px"}} className="mx-auto">
+    <div  ref={ref} style={{maxWidth: "800px"}} className="mx-auto">
       <div className=" rounded-md p-[5%]  shadow-md dark:bg-gray-900 dark:text-gray-100">
         <img
           src={img}
@@ -25,12 +28,19 @@ const CardDetails = () => {
         />
         <div className="flex flex-col justify-between p-6 space-y-8">
           <div className="space-y-2">
+            <div className="md:flex md:justify-between">
             <h2 className="text-2xl font-bold tracking-wide mb-6">
               {name}
             </h2>
+            <>
+            <Pdf targetRef={ref} filename={`${name}.pdf`}>
+        {({ toPdf }) => <button onClick={toPdf} className='btn'>Download Pdf</button>}
+      </Pdf>
+            </>
+            </div>
             <p className="dark:text-gray-100  ">{shorts}</p>
             <h3 className="text-xl font-semibold pt-5">Course overview</h3>
-            <ul>
+            <ul  >
               {overViewList}
             </ul>
           </div>
