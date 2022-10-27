@@ -86,33 +86,33 @@ const Register = () => {
         <div>
             
 
-            <section className="bg-gray-50 min-h-screen flex items-center justify-center">
+            <section className="bg-gray-50 min-h-screen flex items-center justify-center dark:bg-gray-800 dark:text-gray-100">
         {/* login container  */}
-        <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center">
+        <div className="bg-gray-100 flex rounded-2xl shadow-lg max-w-3xl p-5 items-center dark:bg-gray-900 dark:text-gray-100">
           {/* form */}
           <div className="md:w-1/2 px-8 md:px-16">
-            <h2 className="font-bold text-2xl text-[#002D74]">Register</h2>
+            <h2 className="font-bold text-2xl text-[#002D74] dark:text-slate-200">Register</h2>
             {/* <p className="text-xs mt-4 text-[#002D74]">
               If you are not a member, Please register
             </p> */}
 
             <form onSubmit={handleSubmit} className="flex flex-col gap-4">
               <input
-                className="p-2 mt-8 rounded-xl border"
+                className="p-2 mt-8 rounded-xl border font-semibold text-slate-900"
                 type="text"
                 name="name"
-                placeholder="Name"
+                placeholder="Full Name"
                 required
               />
               <input
-                className="p-2  rounded-xl border"
+                className="p-2  rounded-xl border font-semibold text-slate-900"
                 type="text"
                 name="photoURL"
                 placeholder="Photo URL"
                 
               />
               <input
-                className="p-2  rounded-xl border"
+                className="p-2  rounded-xl border font-semibold text-slate-900"
                 type="email"
                 name="email"
                 placeholder="Email"
@@ -120,7 +120,7 @@ const Register = () => {
               />
               <div className="relative">
                 <input
-                  className="p-2 rounded-xl border w-full"
+                  className="p-2 rounded-xl border w-full font-semibold text-slate-900"
                   type="password"
                   name="password"
                   placeholder="Password"
@@ -177,7 +177,7 @@ const Register = () => {
             </div> */}
 
             <div className="mt-3 text-xs flex justify-between items-center text-[#002D74]">
-              <p>Already have an account?</p>
+              <p className='dark:text-slate-200'>Already have an account?</p>
               <Link to='/login' className="py-2 px-5 bg-white border rounded-xl hover:scale-110 duration-300">
                 Login
               </Link>

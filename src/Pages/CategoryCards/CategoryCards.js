@@ -15,10 +15,10 @@ const CategoryCards = ({ category }) => {
         />
         <div className="flex flex-col justify-between p-6 space-y-8">
           <div className="space-y-2">
-            <h2 className="text-2xl font-semibold tracking-wide">
+            <h2 className="text-2xl font-semibold tracking-wide h-[70px]">
               {category.name}
             </h2>
-            <p className="dark:text-gray-100">{category.shorts}</p>
+            <p className="dark:text-gray-100">{category.shorts.length > 120 ? category.shorts.slice(0,120) + '...' : category.shorts }</p>
           </div>
           <div className="flex items-center justify-between">
             <div className="flex items-center">
@@ -30,7 +30,7 @@ const CategoryCards = ({ category }) => {
           </div>
 
           <Link to={`/course/${category.id}`}
-            className="flex items-center justify-center w-full btn p-3 font-semibold tracking-wide rounded-md hover:bg-slate-800 dark:bg-violet-400 dark:text-gray-900"
+            className="flex items-center justify-center w-full btn p-3 font-semibold tracking-wide rounded-md bg-slate-700 hover:bg-slate-800 hover:text-slate-200 dark:bg-slate-700   dark:text-slate-200"
           >
             See Details
           </Link>

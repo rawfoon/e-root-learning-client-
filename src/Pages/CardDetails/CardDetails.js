@@ -9,7 +9,7 @@ const CardDetails = () => {
 
   const ref = React.createRef();
 
-  const {name, img, rating, video_duration, shorts, overview} =category
+  const {name, id, img, rating, video_duration, shorts, overview} =category
   const overViewList = []
 
   overview.forEach((list, i) =>{
@@ -19,8 +19,13 @@ const CardDetails = () => {
 
 
   return (
-    <div  ref={ref} style={{maxWidth: "800px"}} className="mx-auto">
+    <div  ref={ref} style={{maxWidth: "800px"}} className="mx-auto mt-5">
       <div className=" rounded-md p-[5%]  shadow-md dark:bg-gray-900 dark:text-gray-100">
+      <div className="flex justify-end mb-4">
+            <Pdf targetRef={ref} filename={`${name}.pdf`}>
+        {({ toPdf }) => <button onClick={toPdf} className='btn bg-slate-700 hover:bg-slate-600 hover:text-slate-200 dark:bg-slate-600   dark:text-slate-200'>Download Pdf</button>}
+      </Pdf>
+            </div>
         <img
           src={img}
           alt=""
@@ -32,11 +37,7 @@ const CardDetails = () => {
             <h2 className="text-2xl font-bold tracking-wide mb-6">
               {name}
             </h2>
-            <>
-            <Pdf targetRef={ref} filename={`${name}.pdf`}>
-        {({ toPdf }) => <button onClick={toPdf} className='btn'>Download Pdf</button>}
-      </Pdf>
-            </>
+            
             </div>
             <p className="dark:text-gray-100  ">{shorts}</p>
             <h3 className="text-xl font-semibold pt-5">Course overview</h3>
@@ -57,8 +58,8 @@ const CardDetails = () => {
           </div>
 
           <Link
-            to="/checkout"
-            className="flex items-center justify-center w-full btn p-3 font-semibold tracking-wide rounded-md hover:bg-slate-800 dark:bg-violet-400 dark:text-gray-900"
+            to={`/checkout/${id}`}
+            className="flex items-center justify-center w-full btn p-3 font-semibold tracking-wide rounded-md bg-slate-700 hover:bg-slate-700 hover:text-slate-200 dark:bg-slate-600   dark:text-slate-200"
           >
             Get Premium Access
           </Link>
