@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import toast from "react-hot-toast";
 import { FaPlayCircle, FaStar } from "react-icons/fa";
 import {  useLoaderData } from "react-router-dom";
@@ -7,9 +7,11 @@ import { AuthContext } from "../../Context/AuthProvider/AuthProvider";
 const CheckOut = () => {
   const category = useLoaderData();
   const { user } = useContext(AuthContext);
+ useEffect(()=>{
+     toast.success('Successfully Enrolled')
 
+ },[])
 
-  toast.success('Successfully Enrolled')
 
 
   return (

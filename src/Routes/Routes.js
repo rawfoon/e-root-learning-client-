@@ -4,6 +4,7 @@ import Blog from "../Pages/Blog/Blog";
 import CardDetails from "../Pages/CardDetails/CardDetails";
 import CheckOut from "../Pages/CheckOut/CheckOut";
 import Courses from "../Pages/Courses/Courses";
+import Error from "../Pages/Error/Error";
 import FAQ from "../Pages/FAQ/FAQ";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
@@ -20,6 +21,7 @@ export const routes = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <Error></Error>,
         children: [
             {
                 path: '/',
@@ -28,13 +30,13 @@ export const routes = createBrowserRouter([
             {
                 path: '/courses',
                 element: <Courses></Courses>,
-                loader: ()=> fetch(`http://localhost:5000/categoris`)
+                loader: ()=> fetch(`https://e-root-learning-server.vercel.app/categoris`)
                 
             },
             {
                 path: '/course/:id',
                 element: <CardDetails></CardDetails>,
-                loader: ({params})=> fetch(`http://localhost:5000/course/${params.id}`)
+                loader: ({params})=> fetch(`https://e-root-learning-server.vercel.app/course/${params.id}`)
 
 
             },
@@ -57,7 +59,7 @@ export const routes = createBrowserRouter([
             {
                 path: '/checkout/:id',
                 element: <PrivateRoute><CheckOut></CheckOut></PrivateRoute>,
-                loader: ({params})=> fetch(`http://localhost:5000/course/${params.id}`)
+                loader: ({params})=> fetch(`https://e-root-learning-server.vercel.app/course/${params.id}`)
             },
             {
                 path: '/profile',

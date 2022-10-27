@@ -28,9 +28,9 @@ const handleUpdateProfile = event =>{
 
 
   return (
-    <div>
-      <section style={{ maxWidth: "800px" }} className=" h-60 md:w-1/2 mx-[5%] md:mx-auto mt-9">
-        <div className="bg-gray-100  rounded-2xl shadow-lg  p-5 items-center">
+    <div className="pb-[520px]">
+      <section style={{ maxWidth: "800px" }} className=" h-60 md:w-1/2 mx-[5%] md:mx-auto mt-9  dark:bg-gray-800 dark:text-gray-100">
+        <div className="bg-gray-100  rounded-2xl shadow-lg  p-5 items-center  dark:bg-gray-800 dark:text-gray-100">
           <div className="flex justify-center items-center pb-6">
             {user?.photoURL ? (
               <>
@@ -51,7 +51,7 @@ const handleUpdateProfile = event =>{
           </div>
           <form onSubmit={handleUpdateProfile} style={{ maxWidth: "800px" }}>
             <input
-              className="p-2 w-full mb-4 rounded-xl borderfont-semibold text-slate-900"
+              className="p-2 w-full mb-4 rounded-xl borderfont-semibold text-slate-900 dark:bg-slate-300"
               type="email"
               name="email"
               placeholder="Email"
@@ -60,7 +60,7 @@ const handleUpdateProfile = event =>{
               required
             />
             <input
-              className="p-2 mt-8 w-full mb-4  rounded-xl borderfont-semibold text-slate-900 "
+              className="p-2 mt-8 w-full mb-4  rounded-xl borderfont-semibold text-slate-900 dark:bg-slate-300"
               type="text"
               name="name"
               placeholder="Name"
@@ -68,7 +68,7 @@ const handleUpdateProfile = event =>{
               required
             />
             <input
-              className="p-2 w-full mb-4 rounded-xl borderfont-semibold text-slate-900"
+              className="p-2 w-full mb-4 rounded-xl borderfont-semibold text-slate-900 dark:bg-slate-300"
               type="text"
               name="photoURL"
               placeholder="Photo URL"

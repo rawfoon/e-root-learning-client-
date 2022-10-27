@@ -17,7 +17,7 @@ const Home = () => {
                 <br />
                 Learn and Explore the world...</p>
 		<div className="flex flex-wrap justify-center">
-			<Link to='/courses' className="px-8 py-3 m-2 text-lg font-semibold rounded bg-[#60af63] text-slate-100">Get started</Link>
+			<Link to='/courses' className="px-8 py-3 m-2 text-lg font-semibold rounded bg-[#048ae9] text-slate-100">Get started</Link>
 			
 		</div>
 	</div>
