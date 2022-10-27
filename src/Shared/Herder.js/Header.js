@@ -1,13 +1,26 @@
-import React, { useContext } from 'react';
-import { FaUser } from 'react-icons/fa';
+import React, { useContext, useState } from 'react';
+import { FaArrowCircleRight, FaBitbucket, FaBlog, FaHome, FaQuestionCircle, FaRegistered, FaUniversalAccess, FaUser } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider/AuthProvider';
 import ReactTooltip from 'react-tooltip';
 
 const Header = () => {
 
+
+
 	const {user, logOut} = useContext(AuthContext)
-	console.log('header', user)
+	// console.log('header', user)
+
+
+	const [open, setOpen] = useState(false)
+
+	const toggleMenu = ()=>{
+		console.log('clicked')
+		if(!open || open){
+			setOpen(!open)
+			
+		}
+	}
 
 	const handleSignOut = () =>{
 		logOut()
@@ -65,7 +78,7 @@ const Header = () => {
 				<>
                 <img  className='rounded-full'
                 src={user.photoURL} 
-				style ={{height: "30px"}}
+				style={{height: "30px"}}
 				data-tip={user?.displayName}
 				/>
 				<p data-tip=""></p>
@@ -81,13 +94,133 @@ const Header = () => {
                 }
               </Link>
 		</div>
-		<button className="p-4 lg:hidden">
+		<button onClick={toggleMenu} className="p-4 lg:hidden">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 dark:text-gray-100">
 				<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16"></path>
 			</svg>
 		</button>
 	</div>
+
+
+
+
+
+
+
+
+  <div className={`md:hidden ${open ? 'hidden' : ''}`}>
+
+
+
+  <div className="h-full w-full p-3 space-y-2 w-60 dark:bg-gray-900 dark:text-gray-100" style={{width: "100%"}}>
+	<div className="flex items-center p-2 space-x-4">
+		{/* <img src="https://source.unsplash.com/100x100/?portrait" alt="" className="w-12 h-12 rounded-full dark:bg-gray-500" /> */}
+		{user?.photoURL  ?
+				<>
+                <img  className='rounded-full h-12 w-12'
+                src={user.photoURL} 
+				
+				data-tip={user?.displayName}
+				/>
+				<p data-tip=""></p>
+				</>
+				
+				
+				
+				
+                : 
+                <FaUser style={{fontSize: "30px"}} 
+				data-tip={user?.displayName}></FaUser>
+
+                }
+		<div>
+			<h2 className="text-lg font-semibold">{user ? user.displayName : 'User'}</h2>
+			<span className="flex items-center space-x-1">
+				<Link to='/profile' rel="noopener noreferrer" href="#" className="text-xs hover:underline dark:text-gray-400">View profile</Link>
+			</span>
+		</div>
+	</div>
+	<div className="divide-y divide-gray-700">
+		<ul className="pt-2 pb-4 space-y-1 text-sm">
+			<li >
+				<Link to='/' rel="noopener noreferrer" className="flex items-center p-2 space-x-3 rounded-md">
+					<FaHome/>
+					<span>Home</span>
+				</Link>
+			</li>
+			<li >
+				<Link to='/courses' rel="noopener noreferrer" className="flex items-center p-2 space-x-3 rounded-md">
+					<FaBitbucket/>
+					<span>Courses</span>
+				</Link>
+			</li>
+			<li >
+				<Link to='/faq' rel="noopener noreferrer" className="flex items-center p-2 space-x-3 rounded-md">
+					<FaQuestionCircle/>
+					<span>Faq</span>
+				</Link>
+			</li>
+			<li >
+				<Link to='/blog' rel="noopener noreferrer" className="flex items-center p-2 space-x-3 rounded-md">
+					<FaBlog/>
+					<span>Blog</span>
+				</Link>
+			</li>
+			
+			
+		</ul>
+		<ul className="pt-4 pb-2 space-y-1 text-sm">
+			{
+				user ? 
+			<li>
+				<a onClick={handleSignOut} rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
+					<FaArrowCircleRight/>
+					<span >Logout</span>
+				</a>
+			</li>
+			:
+			<>
+			<li>
+				<Link to='/login' rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
+					<FaUniversalAccess></FaUniversalAccess>
+					<span>Login</span>
+				</Link>
+			</li>
+			<li>
+			<Link to='/register' rel="noopener noreferrer" href="#" className="flex items-center p-2 space-x-3 rounded-md">
+				<FaRegistered/>
+				<span>Register</span>
+			</Link>
+		</li>
+		</>
+
+}
+		</ul>
+
+
+		
+	</div>
+</div>
+
+
+  </div>
+
+
+
+
+
+
+
+
+	
 </header>
+
+
+
+
+
+
+
 
 				
 				<ReactTooltip/>
