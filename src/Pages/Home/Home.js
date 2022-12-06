@@ -7,7 +7,7 @@ const Home = () => {
     <div>
 
 <section>
-<section className="dark:bg-gray-800 dark:text-gray-100 h-[700px]" style={{ backgroundImage: `url(${background})`, backgroundRepeat: 'no-repeat',backgroundSize: 'cover', backgroundPosition: 'center',backgroundColor: "rgb" }}>
+<section className="dark:bg-gray-800 dark:text-gray-100 text-slate-100 h-[700px]" style={{ backgroundImage: `url(${background})`, backgroundRepeat: 'no-repeat',backgroundSize: 'cover', backgroundPosition: 'center',backgroundColor: "rgb" }}>
 	<div className="w-full h-full bg-[#1c152482]" >
     <div className="container mx-auto flex flex-col items-center px-4 py-16 text-center md:py-32 md:px-10 lg:px-32 xl:max-w-3xl">
 		<h1 className="text-3xl md:text-6xl font-bold leading-none  font-bold">E-Root Learning

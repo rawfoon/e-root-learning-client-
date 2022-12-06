@@ -127,7 +127,7 @@ const Header = () => {
                  
 				<FaArrowCircleRight className="mr-2 " /> <span>Log Out</span>
                 </button>
-				<Link to="/profile">
+				<Link to="/profile" title={user?.displayName}>
               {user?.photoURL ? (
                 <>
                   <img
